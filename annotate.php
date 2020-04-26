@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <style type="text/css">
-    body {background-color:pink}
-    p {color:black}
+
+    body
+    {background-image:url(body.jpeg);
+    background-repeat:no-repeat;
+    }
+    h1 {background-image:url(header.png); text-align:center; line-height: 390%}
+    p {font-size: 20px}
+    content {background}
     </style>
     <meta charset="UTF-8">
     <title>Annotate</title>
@@ -28,26 +35,25 @@
 
 <body>
 <h2>Want to return to Instructions?</h2>
-<input type="button" value="返回查看说明" onclick="javascrtpt:window.location.href='./index.html'" />
+<input type="button" value="Return to Instructions" onclick="javascrtpt:window.location.href='./index.html'" />
 <hr>
+<h1>Rewrite Questions in Your Words</h1>
 
-<h2>Write down how you would ask this question and check on the radio boxes below</h2>
-<hr>
 <?php
-$myfile = fopen("SPIDER_input.csv", "r");
+$myfile = fopen("SPIDER_canonicals_train.csv", "r");
 $headers = fgets($myfile);
-$annotated_file = fopen("spider_annotated.json", "r");
+$annotated_file = fopen("spider_canonicals_train_annotated.json", "r");
 $annotated_str = fgets($annotated_file);
 $annotated = json_decode($annotated_str, true);
 $entry;
 while(! feof($myfile))
 {
     $temp_array = fgetcsv($myfile);
-    if(! in_array($temp_array[4], $annotated)){
+    if(! in_array($temp_array[6], $annotated)){
         $entry = $temp_array;
-        $annotated[count($annotated)] = $temp_array[4];
-        setcookie("gold",$temp_array[3]);
-        setcookie("entry_index",$temp_array[4]);
+        $annotated[count($annotated)] = $temp_array[6];
+        setcookie("gold",$temp_array[2]);
+        setcookie("entry_index",$temp_array[6]);
         break;
     }
 }
@@ -58,9 +64,14 @@ if(is_null($entry)){
     die("Files exausted!");
 }
 else{
+    echo "<h2>Example for Reference</h2>";
+    echo "<p><strong>Sequence: </strong><br>", $entry[3], "</p>";
+    echo "<p><strong>Expected Output: </strong>", $entry[4], "</p>";
+    echo "<hr>";
+    echo "<h2>Write down how you would ask this question and check on the radio boxes below</h2>";
     echo "<p><strong>Topic: </strong>", $entry[0], "</p>";
     echo "<p><strong>Question Sequence: </strong><br>",$entry[1],"</p>";
-    echo "<p><strong>Answer Sample: </strong><br>",$entry[2],"</p>";
+    echo "<p><strong>Answer Sample: </strong><br>",$entry[5],"</p>";
 }
 ?>
 
@@ -84,9 +95,12 @@ else{
     <input type="radio" name="complex" value="yes" required>yes<br>
     <input type="radio" name="complex" value="no" required>no
     <hr>
-    你的学号（将通过北京大学付费至您入学时校方发放的农行卡 ^_^ ）：<input type="text" name="stu_id" id="stu_id" required>
+
     <br>
-    <input type="submit" value="Submit">
+    <div style="text-align:center; vertical-align:middel;height:100px">
+    你的学号（将通过北京大学付费至您入学时校方发放的农行卡 ^_^ ）：<input type="text" name="stu_id" id="stu_id" required><br><br>
+    <input type="submit" value="Submit" style='font-size:60px'>
+    </div>
 </form>
 </body>
 </html>
