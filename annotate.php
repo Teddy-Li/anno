@@ -98,7 +98,9 @@ else{
 
     <br>
     <div style="text-align:center; vertical-align:middel;height:100px">
-    你的学号（将通过北京大学付费至您入学时校方发放的农行卡 ^_^ ）：<input type="text" name="stu_id" id="stu_id" required><br><br>
+    Your Student ID :<input type="text" name="stu_id" id="stu_id" required><br>
+    (Payments will be made via your school ABC debit card linked to this ID, please contact us via e-mail if you have troubles on this) <br>
+    Contact: litianyi01@pku.edu.cn<br>
     <input type="submit" value="Submit" style='font-size:60px'>
     </div>
 </form>

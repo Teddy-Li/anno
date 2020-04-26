@@ -35,7 +35,7 @@ echo "<h2>Data Saved!</h2>";
 echo "Written question: ", $json["question"], "\n";
 ?>
 <hr>
-<input type="button" value="继续标注" onclick="javascrtpt:window.location.href='./annotate.php'" />
-<input type="button" value="返回查看说明" onclick="javascrtpt:window.location.href='./index.html'" />
+<input type="button" value="Continue" onclick="javascrtpt:window.location.href='./annotate.php'" />
+<input type="button" value="Return to Instructions" onclick="javascrtpt:window.location.href='./index.html'" />
 </body>
 </html>
