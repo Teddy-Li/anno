@@ -91,6 +91,7 @@ else{
     echo "<h2>Example for Reference</h2>";
     echo "<p><strong>Sequence: </strong><br>", $entry[3], "</p>";
     echo "<p><strong>Expected Output: </strong>", $entry[4], "</p>";
+    echo "<p><strong>Database Response: </strong><br>",$entry[6],"</p>";
     echo "<hr>";
     echo "<h2>Write down how you would ask the following question in your own words, then check on the radio boxes below</h2>";
     echo "<p><strong>Topic: </strong>", $entry[0], "</p>";
