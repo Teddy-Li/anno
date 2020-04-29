@@ -15,19 +15,21 @@
 <?php
 $json = $_POST;
 $json["entry_idx"] = $_COOKIE["entry_index"];
-$json["gold"] = $_COOKIE["gold"];
 $annotated_file = fopen("spider_canonicals_train_annotated.json", "r");
 $annotated_str = fgets($annotated_file);
 fclose($annotated_file);
 $annotated = json_decode($annotated_str, true);
 $annotated[count($annotated)] = $_COOKIE["entry_index"];
+#echo "!!!!!: ", $_COOKIE["entry_index"];
+#echo "annotated: ", $annotated;
 $new_annotated_str = json_encode($annotated);
+#echo "str: ", $new_annotated_str;
 $new_annotated_file = fopen("spider_canonicals_train_annotated.json", "w");
 fwrite($new_annotated_file, $new_annotated_str);
 fclose($new_annotated_file);
 
 $txt = json_encode($json)."\n";
-$fname = "./annotation_result_canonical_train/data_".date("y_m_d_h_i_sa").".json";
+$fname = "./annotation_result_canonical_train/data_".$json["entry_idx"]."_".date("y_m_d_h_i_sa").".json";
 $myfile = fopen($fname, "w");
 fwrite($myfile, $txt);
 fclose($myfile);
